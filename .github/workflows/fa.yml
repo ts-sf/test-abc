@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: test push dev
 
 # Controls when the workflow will run
 on:
@@ -27,17 +27,26 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: echo Hello, world!
+        run: |
+          echo Hello, world!
+          
 
       - name: Restore cached Primes
-        id: cache-primes-restore
-        uses: actions/cache/restore@v3
-        with:
-          path: |
-            tv.txt
-          key: cache-test-hw
+        uses: actions/checkout@v3
+        with: 
+          ref:  dev
+          path: 'dev'
           
       - name: Run script
         run: |
           ls
-          cat tv.txt
+          cd dev
+          git log -n2
+          echo "♻ $(date '+%Y-%m-%d %H:%M:%S')\n" << dev
+          
+          git config user.email "github-+bot@github.com"
+          git config user.name "github-actions"
+          git add .
+          git commit -m "asa-$(date '+%Y-%m-%d %H:%M:%S')"
+          
+          git push https://${{secrets.PERSONAL_TOKEN}}@github.com/ts-sf/test-abc.git dev
