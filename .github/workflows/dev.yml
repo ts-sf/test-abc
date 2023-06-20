@@ -42,7 +42,7 @@ jobs:
           ls
           cd dev
           git log -n2
-          echo "♻ $(date '+%Y-%m-%d %H:%M:%S')\n" << dev
+          echo "♻ $(date '+%Y-%m-%d %H:%M:%S')\n" >> dev
           
           git config user.email "github-+bot@github.com"
           git config user.name "github-actions"
