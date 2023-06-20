@@ -25,7 +25,7 @@ jobs:
 
       - name: create file
         run: |
-          echo "hello world" >> e.txt
+          echo "♻ $(date '+%Y-%m-%d %H:%M:%S')" >> e.txt
       - name: Save Primes
         uses: actions/cache/save@v3
         with: 
