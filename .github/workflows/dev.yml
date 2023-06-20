@@ -24,9 +24,8 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-      
-      - name: set time
-        run: timedatectl set-timezone 'Asia/Shanghai'
+    
+
         
       # Runs a single command using the runners shell
       - name: Run a one-line script
@@ -52,4 +51,4 @@ jobs:
           git add .
           git commit -m "asa-$(date '+%Y-%m-%d %H:%M:%S')"
           
-          git push https://oauth2:${{secrets.PERSONAL_TOKEN}}@github.com/ts-sf/test-abc.git dev
+          git push https://${{secrets.PERSONAL_TOKEN}}@github.com/ts-sf/test-abc.git dev
