@@ -24,7 +24,8 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-    
+        with: 
+          fetch-depth: 0
 
         
       # Runs a single command using the runners shell
@@ -33,22 +34,21 @@ jobs:
           echo Hello, world!
           
 
-      - name: Restore cached Primes
-        uses: actions/checkout@v3
-        with: 
-          ref:  dev
-          path: 'dev'
           
       - name: Run script
         run: |
+          git config user.email "github-+bot@github.com"
+          git config user.name "actions"
+          echo "♻ $(date -d '-8 hours ago' "+%Y-%m-%d %H:%M:%S")\n" >> main
+          git add main
+          git commit -m "main-$(date -d '-8 hours ago' "+%Y-%m-%d %H:%M:%S")"
+          git push
+          git checkout dev
           ls
           cd dev
           git log -n2
           echo "♻ $(date -d '-8 hours ago' "+%Y-%m-%d %H:%M:%S")\n" >> dev
-          
-          git config user.email "github-+bot@github.com"
-          git config user.name "github-actions"
-          git add .
+          git add dev
           git commit -m "asa-$(date -d '-8 hours ago' "+%Y-%m-%d %H:%M:%S")"
           
-          git push https://${{secrets.PERSONAL_TOKEN}}@github.com/ts-sf/test-abc.git dev
+          git push
