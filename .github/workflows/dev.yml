@@ -44,8 +44,7 @@ jobs:
           git commit -m "main-$(date -d '-8 hours ago' "+%Y-%m-%d %H:%M:%S")"
           git push
           git checkout dev
-          ls
-          cd dev
+
           git log -n2
           echo "♻ $(date -d '-8 hours ago' "+%Y-%m-%d %H:%M:%S")\n" >> dev
           git add dev
