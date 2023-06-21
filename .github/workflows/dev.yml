@@ -44,10 +44,18 @@ jobs:
           git commit -m "main-$(date -d '-8 hours ago' "+%Y-%m-%d %H:%M:%S")"
           git push
           git checkout dev
+          
+          echo "ht" >> hpp
+          $hpp = "./hpp"
+          $exit = (Test-Path $hpp)
+          if($exit -eq "True"){
+            echo "--------------------------------------------------------------"
+            
+          }
 
           git log -n2
           echo "♻ $(date -d '-8 hours ago' "+%Y-%m-%d %H:%M:%S")\n" >> dev
-          git add dev
+          git add .
           git commit -m "asa-$(date -d '-8 hours ago' "+%Y-%m-%d %H:%M:%S")"
           
           git push
